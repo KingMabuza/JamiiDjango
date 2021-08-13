@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ object.title }}{% endblock title %}
+{% block content %}
+    <img class="rounded-circle" src="{{ object.author.profile.image.url }}"/>
+        {% if object.author == user %}
+            <a href="{% url 'post-delete' object.id %}">Delete</a>
+        {% endif %}
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.content }}</p>
+        <p><a href="{% url 'user-posts' object.author.username %}"></a>{{ object.author }}</p>
+        <p>{{ object.date_posted }}</p>
+{% endblock content %}
